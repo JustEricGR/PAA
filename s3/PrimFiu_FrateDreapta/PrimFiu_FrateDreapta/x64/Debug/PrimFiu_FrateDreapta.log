@@ -1,0 +1,6 @@
+﻿  Main.c
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s3\PrimFiu_FrateDreapta\PrimFiu_FrateDreapta\Main.c(54,30): warning C4013: 'getRoot' undefined; assuming extern returning int
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s3\PrimFiu_FrateDreapta\PrimFiu_FrateDreapta\Main.c(73,3): warning C4013: 'exit' undefined; assuming extern returning int
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s3\PrimFiu_FrateDreapta\PrimFiu_FrateDreapta\Main.c(70,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s3\PrimFiu_FrateDreapta\PrimFiu_FrateDreapta\Main.c(77,9): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  PrimFiu_FrateDreapta.vcxproj -> C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s3\PrimFiu_FrateDreapta\x64\Debug\PrimFiu_FrateDreapta.exe

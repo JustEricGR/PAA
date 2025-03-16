@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ericr\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\0Y50TH0Q\\main[1].c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B03D403E-52BE-4E3D-BF21-5ADEA28340F8}|ex1\\ex1.vcxproj|C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B03D403E-52BE-4E3D-BF21-5ADEA28340F8}|ex1\\ex1.vcxproj|solutionrelative:ex1\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -26,11 +29,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "main[1].c",
+              "DocumentMoniker": "C:\\Users\\ericr\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\0Y50TH0Q\\main[1].c",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\0Y50TH0Q\\main[1].c",
+              "ToolTip": "C:\\Users\\ericr\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\0Y50TH0Q\\main[1].c [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\0Y50TH0Q\\main[1].c [Read Only]",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-16T18:36:01.859Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "data.txt",
               "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\data.txt",
               "RelativeDocumentMoniker": "ex1\\data.txt",
@@ -38,12 +54,11 @@
               "RelativeToolTip": "ex1\\data.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-03-12T10:17:50.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T10:17:50.834Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Arbore.c",
               "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\Arbore.c",
               "RelativeDocumentMoniker": "ex1\\Arbore.c",
@@ -55,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Arbore.h",
               "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\Arbore.h",
               "RelativeDocumentMoniker": "ex1\\Arbore.h",
@@ -67,13 +82,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Main.c",
               "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\Main.c",
               "RelativeDocumentMoniker": "ex1\\Main.c",
               "ToolTip": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s3\\ex1\\ex1\\Main.c",
               "RelativeToolTip": "ex1\\Main.c",
-              "ViewState": "AgIAADYAAAAAAAAAAAAkwD4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAD4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-12T10:05:51.791Z",
               "EditorCaption": ""
