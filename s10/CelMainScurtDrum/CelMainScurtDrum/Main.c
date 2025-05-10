@@ -118,28 +118,32 @@ void eliberareCoada(Coada* c) {
 }
 
 int cautare(int** v, int indiceLinie, int size, int *newStartLine) {
-	for (int i = 0; i < size; i++) {
+	for (int i = indiceLinie; i < size; i++) {
 		if (v[indiceLinie][i] == 1) {
 			*newStartLine = i;
-			return v[indiceLinie][i];
+			return i;
 		}
 	}
 	return 0;
 }
 
-Coada *parcurgere(Coada *rezultat, int** v, int start, int end, int size) {
-	int newStartLine = 0;
-	if (!cautare(v, start, size, &newStartLine)) {
-		pop(rezultat);
-		
-	}
-	else {
-
-	}
-
+int parcurgere(Coada *rezultat, int** v, int start, int end, int size, int *vizitat) {
+	vizitat[start] = 1;
+	push(rezultat, start);
 	if (start == end) {
-		push(rezultat, start);
+		return 1;
 	}
+
+	for (int i = 0; i < size; i++) {
+		if (v[start][i] == 1 && !vizitat[i]) {
+			if (parcurgere(rezultat, v, i, end, size, vizitat)) {
+				return 1;
+			}
+		}
+	}
+
+	pop(rezultat);
+	return 0;
 }
 
 int main(void) {
@@ -147,7 +151,7 @@ int main(void) {
 	int size = 0;
 	v = citire(&size, IN);
 	//afisare(v, size);
-	eliberare(v, size);
+	int* vizitat = (int*)calloc(size, sizeof(int));
 
 	int start = 0, end = 0;
 	printf("Dati elementul de inceput: ");
@@ -157,9 +161,13 @@ int main(void) {
 	scanf("%d", &end);
 
 	Coada c;
+	//c->prim = c->ultim = NULL;
 	coadaInit(&c);
-	
+	if (parcurgere(&c, v, start, end, size, vizitat)) {
+		afisareCoada(c);
+	}
 
-	afisareCoada(c);
+	//afisareCoada(c);
 	eliberareCoada(&c);
+	eliberare(v, size);
 }
