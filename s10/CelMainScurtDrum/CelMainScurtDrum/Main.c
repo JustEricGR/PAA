@@ -1,4 +1,4 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 #include<stdlib.h>
 
 #define IN "matrice.txt"
@@ -92,13 +92,49 @@ void push(Coada* c, int n) {
 }
 
 void pop(Coada* c) {
-	nod* aux = c->prim;
-	for(;aux->urm!=c->ultim;aux=aux->urm) {}
-	aux->urm = NULL;
-	c->ultim->pred = NULL;
-	free(c->ultim);
-	c->ultim = aux;
+	if (c->ultim == NULL) return;
+
+	nod* deSters = c->ultim;
+	c->ultim = c->ultim->pred;
+
+	if (c->ultim)
+		c->ultim->urm = NULL;
+	else
+		c->prim = NULL;
+
+	free(deSters);
 }
+
+void adaugare(Coada* q, int elem) {
+	nod* aux = nou(elem);
+	aux->urm = q->prim;
+	q->prim->pred = aux;
+	q->prim = aux;
+}
+
+void stergereDinCoada(Coada* c, int elem) {
+	if (c->ultim->cheie == elem) pop(c);
+	else if (c->prim->cheie == elem) {
+		nod* aux = c->prim->urm;
+		aux->pred = NULL;
+		free(c->prim);
+		c->prim = aux;
+	}
+	else {
+		nod* p = c->prim;
+		for (; p != NULL; p = p->urm) {
+			if (p->cheie == elem) {
+				p->pred->urm = p->urm;
+				p->urm->pred = p->pred;
+				p->urm = NULL;
+				p->pred = NULL;
+				free(p);
+				break;
+			}
+		}
+	}
+}
+
 
 void afisareCoada(Coada c) {
 	nod* aux = c.prim;
@@ -117,16 +153,7 @@ void eliberareCoada(Coada* c) {
 	c->prim = c->ultim = NULL;
 }
 
-int cautare(int** v, int indiceLinie, int size, int *newStartLine) {
-	for (int i = indiceLinie; i < size; i++) {
-		if (v[indiceLinie][i] == 1) {
-			*newStartLine = i;
-			return i;
-		}
-	}
-	return 0;
-}
-
+//parcurgere adancime
 int parcurgere(Coada *rezultat, int** v, int start, int end, int size, int *vizitat) {
 	vizitat[start] = 1;
 	push(rezultat, start);
@@ -146,6 +173,78 @@ int parcurgere(Coada *rezultat, int** v, int start, int end, int size, int *vizi
 	return 0;
 }
 
+//parcurgere latime
+void bfs(Coada *c, int** v, int start, int end, int size) {
+	int* vizitat = (int*)calloc(size, sizeof(int));
+	int* parinte = (int*)malloc(size * sizeof(int));
+	for (int i = 0; i < size; i++)
+		parinte[i] = -1;
+
+	Coada q;
+	coadaInit(&q);
+	
+	vizitat[start] = 1;
+	push(&q, start);
+
+	
+	while (q.prim != NULL) {
+		
+		
+		if (q.prim->urm == NULL) {//daca pe nivelul de adancime exista un singur copil
+			int nodAux = q.ultim->cheie;
+			pop(&q);
+			for (int i = 0; i < size; i++) {
+				if (v[nodAux][i] == 1 && !vizitat[i]) {
+					vizitat[i] = 1;
+					parinte[i] = nodAux;
+					push(&q, i);
+				}
+			}
+		}		
+		else {
+			nod* n = q.prim;
+			while(n!=NULL) {
+				nod* next = n->urm;
+				int nodAux = n->cheie;
+				stergereDinCoada(&q, nodAux);
+				n = next;
+				if (nodAux == end) break;				
+				for (int i = 0; i < size; i++) {
+					if (v[nodAux][i] == 1 && !vizitat[i]) {
+						vizitat[i] = 1;
+						parinte[i] = nodAux;
+						//push(&q, i);
+						adaugare(&q, i);
+
+					}
+				}
+			}
+		}
+		
+		
+	}
+
+	int drum[100];
+	int len = 0;
+
+	int p = end;
+	while (p != -1) {
+		drum[len++] = p;
+		p = parinte[p];
+	}
+
+	printf("len:%d\n", len);
+
+	for (int i = len - 1; i >= 0; i--) {
+		push(c, drum[i]);
+	}
+
+	free(vizitat);
+	free(parinte);
+
+}
+
+
 int main(void) {
 	int** v = NULL;
 	int size = 0;
@@ -161,11 +260,14 @@ int main(void) {
 	scanf("%d", &end);
 
 	Coada c;
-	//c->prim = c->ultim = NULL;
 	coadaInit(&c);
-	if (parcurgere(&c, v, start, end, size, vizitat)) {
+	/*if (parcurgere(&c, v, start, end, size, vizitat)) {
 		afisareCoada(c);
-	}
+	}*/
+
+	bfs(&c, v, start, end, size);
+	
+	afisareCoada(c);
 
 	//afisareCoada(c);
 	eliberareCoada(&c);
