@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8EBAA1E-248C-4451-919E-20ABC7DFAD75}|parcurgeri1\\parcurgeri1.vcxproj|C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C8EBAA1E-248C-4451-919E-20ABC7DFAD75}|parcurgeri1\\parcurgeri1.vcxproj|solutionrelative:parcurgeri1\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8EBAA1E-248C-4451-919E-20ABC7DFAD75}|parcurgeri1\\parcurgeri1.vcxproj|C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\matrice.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C8EBAA1E-248C-4451-919E-20ABC7DFAD75}|parcurgeri1\\parcurgeri1.vcxproj|solutionrelative:parcurgeri1\\matrice.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.c",
+              "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\Main.c",
+              "RelativeDocumentMoniker": "parcurgeri1\\Main.c",
+              "ToolTip": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\Main.c",
+              "RelativeToolTip": "parcurgeri1\\Main.c",
+              "ViewState": "AgIAANIAAAAAAAAAAAAAwOgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-05-13T07:55:39.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "matrice.txt",
+              "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\matrice.txt",
+              "RelativeDocumentMoniker": "parcurgeri1\\matrice.txt",
+              "ToolTip": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s10\\parcurgeri1\\parcurgeri1\\matrice.txt",
+              "RelativeToolTip": "parcurgeri1\\matrice.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-13T07:56:01.055Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

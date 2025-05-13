@@ -1,0 +1,6 @@
+﻿  Main.c
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeri1\parcurgeri1\Main.c(19,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeri1\parcurgeri1\Main.c(25,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeri1\parcurgeri1\Main.c(41,8): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeri1\parcurgeri1\Main.c(253,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  parcurgeri1.vcxproj -> C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeri1\x64\Debug\parcurgeri1.exe

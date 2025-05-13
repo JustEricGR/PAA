@@ -1,0 +1,7 @@
+﻿  Main.c
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\parcurgeriGraf\Main.c(19,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\parcurgeriGraf\Main.c(25,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\parcurgeriGraf\Main.c(41,8): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\parcurgeriGraf\Main.c(172,13): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\parcurgeriGraf\Main.c(172,13): warning C4024: 'citire': different types for formal and actual parameter 1
+  parcurgeriGraf.vcxproj -> C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s10\parcurgeriGraf\x64\Debug\parcurgeriGraf.exe
