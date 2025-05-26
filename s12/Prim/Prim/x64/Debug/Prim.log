@@ -1,0 +1,5 @@
+﻿  Main.c
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s12\Prim\Prim\Main.c(9,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s12\Prim\Prim\Main.c(15,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s12\Prim\Prim\Main.c(31,8): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Prim.vcxproj -> C:\Users\ericr\Desktop\poli\anul2\sem2\paa\PAA\s12\Prim\x64\Debug\Prim.exe

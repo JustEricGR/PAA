@@ -59,50 +59,54 @@ void printArray(int* v, int size) {
 
 
 
+
 int* djikstra(int** v, int size) {
 	int* drum = (int*)malloc(size * sizeof(int));
 	int* vizitat = (int*)calloc(size, sizeof(int));
 	int* d = (int*)malloc(size * sizeof(int));
 	for (int i = 0; i < size; i++)d[i] = -1;
 
-	drum[0] = 0;
 	vizitat[0] = 1;
+	drum[0] = 0;
 	int len = 1;
 
 	for (int i = 1; i < size; i++) {
-		if (v[0][i] != 0) d[i] = v[0][i];
+		if (!vizitat[i] && v[0][i] != 0)d[i] = v[0][i];
 	}
-	printf("Stare drumuri cand adaug 0\n");
-	printArray(d, size);
 
 	for (int k = 1; k < size; k++) {
 		int min = INT_MAX;
 		int u = -1;
-		for (int i = 0; i < size; i++) {
-			if (!vizitat[i] && d[i] < min && d[i] != -1) {
+
+		for (int i = 1; i < size; i++) {
+			if (!vizitat[i] && min > d[i] && d[i] != -1) {
 				min = d[i];
 				u = i;
 			}
 		}
+
 		if (u == -1)break;
 		vizitat[u] = 1;
 		drum[len++] = u;
 
+		
 		for (int j = 1; j < size; j++) {
 			int flag = 0;
 			if (d[j] == -1 && v[u][j] != 0) {
 				d[j] = v[u][j];
 				flag = 1;
 			}
-			if (v[u][j] != 0 && !vizitat[j]) {
-				if(d[j] == -1 || flag || (d[j] > d[u] + v[u][j]))
+			if (!vizitat[j] && v[u][j] != 0) {
+				if (d[j] == -1 || flag || (d[j] > d[u] + v[u][j])) {
 					d[j] = d[u] + v[u][j];
+				}
 			}
 		}
-		printf("Stare drumuri cand adaug %d\n", u);
+
+		printf("Drumurile in momentul in care se adauga elementul %d\n", u);
 		printArray(d, size);
-		min = INT_MAX;
 	}
+
 	free(vizitat);
 	free(d);
 	return drum;
