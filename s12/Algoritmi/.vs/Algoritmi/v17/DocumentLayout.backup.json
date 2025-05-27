@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F0684B10-ED64-4AA1-B62C-FD2F153518D5}|Algoritmi\\Algoritmi.vcxproj|C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0684B10-ED64-4AA1-B62C-FD2F153518D5}|Algoritmi\\Algoritmi.vcxproj|solutionrelative:Algoritmi\\Main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0684B10-ED64-4AA1-B62C-FD2F153518D5}|Algoritmi\\Algoritmi.vcxproj|C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\matrice.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{F0684B10-ED64-4AA1-B62C-FD2F153518D5}|Algoritmi\\Algoritmi.vcxproj|solutionrelative:Algoritmi\\matrice.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "matrice.txt",
+              "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\matrice.txt",
+              "RelativeDocumentMoniker": "Algoritmi\\matrice.txt",
+              "ToolTip": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\matrice.txt",
+              "RelativeToolTip": "Algoritmi\\matrice.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-27T07:09:58.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.c",
+              "DocumentMoniker": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\Main.c",
+              "RelativeDocumentMoniker": "Algoritmi\\Main.c",
+              "ToolTip": "C:\\Users\\ericr\\Desktop\\poli\\anul2\\sem2\\paa\\PAA\\s12\\Algoritmi\\Algoritmi\\Main.c",
+              "RelativeToolTip": "Algoritmi\\Main.c",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAJUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-05-27T07:09:46.205Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
