@@ -59,22 +59,21 @@ int primFiu(Tree *arbore, int cheie) {
 
 void srd(Tree *arbore, int start) {
     int flag=0;
-    for (int i=0;i<arbore->size;i++) {
+    for (int i = 0; i < arbore->size; i++) {
         if (arbore->array[i].parinte == arbore->array[start].cheie) {
             if (!flag) {
                 srd(arbore, arbore->array[i].cheie);
-                flag=1;
                 printf("%d ", arbore->array[start].cheie);
+                flag = 1;
             }
             else {
                 srd(arbore, arbore->array[i].cheie);
             }
         }
-
     }
 
     if (!flag) {
-        printf("%d ", arbore->array[start].cheie);
+        printf("%d ",arbore->array[start].cheie);
     }
 }
 
