@@ -47,26 +47,18 @@ void eliberare(int **v, int size) {
 
 
 void dfs(int **v, int size, int *vizitat, int start, int current, int lungime, int *lungimeMax) {
-
-
     vizitat[current]=1;
-
-
     for(int i=0;i<size;i++) {
-        if(v[current][i]!=0) {
-            //printf("lungimeMax:%d\n ",*lungimeMax);
-            //printf("i:%d - start:%d\n",i,start);
+        if (v[current][i]!=0) {
             if (lungime >= 3 && i==start) {
                 if (lungime > *lungimeMax) {
                     *lungimeMax=lungime;
-
                 }
             }
             else if (!vizitat[i]) {
                 lungime+=1;
                 dfs(v,size,vizitat,start,i,lungime,lungimeMax);
             }
-
         }
     }
     vizitat[current]=0;
