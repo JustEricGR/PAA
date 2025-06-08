@@ -232,15 +232,15 @@ int **floyd(int **v, int size) {
                 a[i][j]=0;
             }
             else {
-                a[i][j]=INT_MAX;
+                a[i][j]=-1;
             }
         }
     }
 
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            for (int k = 0; k < size; k++) {
-                if (a[i][k]+a[k][j] < a[i][j]) {
+    for (int k=0;k<size;k++) {
+        for (int i=0;i<size;i++) {
+            for (int j=0;j<size;j++) {
+                if (a[i][k]!=-1 && a[k][j]!=-1 && a[i][k]+a[k][j] < a[i][j]) {
                     a[i][j]=a[i][k]+a[k][j];
                 }
             }
