@@ -19,5 +19,8 @@ struct Pagina
 };
 typedef struct Pagina Pagina;
 Pagina* insereaza(Pagina *pag, TipCheie x, Nod *nod);
-void afisare(Pagina *arbore, int nivel);
+void afisareSdr(Pagina *arbore, int nivel);
 Pagina* suprima(Pagina *pag, TipCheie x, Nod *nod);
+int cautare(Pagina *pag, TipCheie x);
+void afisareRsd(Pagina *arbore, int nivel);
+void afisareSrd(Pagina *arbore, int nivel);

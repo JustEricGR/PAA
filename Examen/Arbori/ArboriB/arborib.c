@@ -114,45 +114,87 @@ Pagina* insereaza(Pagina *pag, TipCheie x, Nod *nod)
 	return pag;
 }
 
-void afisare(Pagina *arbore, int nivel)
-{
-	int i;
+// void afisare(Pagina *arbore, int nivel)
+// {
+// 	int i;
+//
+// 	if (!arbore)
+// 		return;
+// 	afisare(arbore->p0, nivel + 1);
+// 	for (i = 1; i <= arbore->m; i++)
+// 		afisare(arbore->e[i].p, nivel + 1);
+//
+// 	printf("Nivel %d: ", nivel);
+// 	for (i = 1; i <= arbore->m; i++)
+// 		printf("%d ", arbore->e[i].cheie);
+// 	printf("\n");
+// }
 
-	if (!arbore)
-		return;
-	afisare(arbore->p0, nivel + 1);
-	for (i = 1; i <= arbore->m; i++)
-		afisare(arbore->e[i].p, nivel + 1);
+void afisareSdr(Pagina *arbore, int nivel) {
+	if (arbore==NULL)return;
 
-	printf("Nivel %d: ", nivel);
-	for (i = 1; i <= arbore->m; i++)
-		printf("%d ", arbore->e[i].cheie);
-	printf("\n");
+	afisareSdr(arbore->p0,nivel+1);
+
+	for (int i=1;i<=arbore->m;i++) {
+		afisareSrd(arbore->e[i].p,nivel+1);
+	}
+
+	printf("nivel %d : ",nivel);
+	for (int i=1;i<=arbore->m;i++) {
+		printf("%d ",arbore->e[i].cheie);
+	}printf("\n");
+
 }
 
-int cautare(Pagina *pag, TipCheie x)
-{
-	/*Cauta cheia x in arbore. Returneaza 1 daca cheia exista, 0 daca nu exista.*/
-	int s, d, mij;
+void afisareRsd(Pagina *arbore, int nivel) {
+	if (arbore == NULL) return;
+	printf("nivel %d: ",nivel);
 
-	if (pag == NULL)
-		return 0;
+	for (int i=1;i<=arbore->m;i++) {
+		printf("%d ", arbore->e[i].cheie);
+	}printf("\n");
+	afisareRsd(arbore->p0, nivel + 1);
 
-	s = 1;
-	d = pag->m;
-	while (s <= d) //cautare binara
-	{
-		mij = (s + d) / 2;
-		if (x == pag->e[mij].cheie)
-			return 1;
-		if (x < pag->e[mij].cheie)
-			d = mij - 1;
-		else
-			s = mij + 1;
+	for (int i = 1; i <= arbore->m; i++) {
+		afisareRsd(arbore->e[i].p, nivel + 1);
 	}
-	if (d == 0)
-		return cautare(pag->p0, x);
-	return cautare(pag->e[d].p, x);
+
+}
+
+void afisareSrd(Pagina *arbore, int nivel) {
+	if (arbore == NULL) return;
+	afisareSrd(arbore->p0, nivel + 1);
+
+	printf("nivel %d: ",nivel);
+	for (int i=1;i<=arbore->m;i++) {
+		printf("%d ",arbore->e[i].cheie);
+	}printf("\n");
+
+	for (int i=1;i<=arbore->m;i++) {
+		afisareSrd(arbore->e[i].p, nivel + 1);
+	}
+
+}
+
+int cautare(Pagina *pag, TipCheie x) {
+	int s,d,mij;
+	if (pag==NULL)return 0;
+	s=1;
+	d=pag->m;
+	while (s<=d) {
+		mij=(s+d)/2;
+		if (pag->e[mij].cheie==x) {
+			return 1;
+		}
+		else if (pag->e[mij].cheie > x) {
+			d=mij-1;
+		}
+		else {
+			s=mij+1;
+		}
+	}
+	if (d==0) return cautare(pag->p0,x);
+	return cautare(pag->e[d].p,x);
 }
 
 void vecinStang(Pagina *pag, Pagina *st, Pagina *r, int d)
