@@ -251,6 +251,45 @@ void convert1(ArboreOarecare *arbore, ArboreOarecare1 *arbore1) {
     }
 }
 
+void convert2(ArboreOarecare1 *arbore, node *binar, int start) {
+    if (arbore->noduri[start].primFiu!=-1) {
+        adaugare(binar,arbore->noduri[start].cheie,STANGA,arbore->noduri[start].primFiu);
+        convert2(arbore, binar, arbore->noduri[start].primFiu);
+    }
+    if (arbore->noduri[start].frateDreapta!=-1) {
+        adaugare(binar, arbore->noduri[start].cheie, DREAPTA, arbore->noduri[start].frateDreapta);
+        convert2(arbore, binar, arbore->noduri[start].frateDreapta);
+    }
+}
+
+void adancimeOarecare(ArboreOarecare *arbore, int start, int maxCrt, int *max) {
+    int flag=1;
+
+    for (int i=0;i<arbore->size;i++) {
+        if (arbore->noduri[i].parinte == arbore->noduri[start].cheie) {
+            flag=0;
+            adancimeOarecare(arbore, arbore->noduri[i].cheie, maxCrt+1, max);
+        }
+    }
+
+    if (flag && *max<maxCrt) {
+        *max=maxCrt;
+    }
+}
+
+void adancime(node *arbore, int *maxCrt, int *max) {
+    if (arbore==NULL) {
+        return;
+    }
+    if (*max < *maxCrt && (arbore->stanga == NULL && arbore->dreapta == NULL)) {
+        *max=*maxCrt;
+        *maxCrt=0;
+    }
+    *maxCrt+=1;
+    adancime(arbore->stanga, maxCrt, max);
+    adancime(arbore->dreapta, maxCrt, max);
+}
+
 int main(void) {
     ArboreOarecare arbore;
     ArboreOarecare1 arbore1;
@@ -278,9 +317,25 @@ int main(void) {
     // printf("\nSdr: ");
     // afisareSdr(&arbore, 0);
     convert1(&arbore, &arbore1);
-    afisare1(arbore1);
+    //afisare1(arbore1);
+    printf("Arbore oarecare: ");
+    afisareRsd1(&arbore1, 0);
+
+    node *binar1=NULL;
+    binar1=nou(arbore1.noduri[0].cheie);
+    convert2(&arbore1, binar1, 0);
+    printf("\nArbore binar: ");
+    rsd(binar1);
+    int max=0,maxCrt=0;
+    adancime(binar1, &maxCrt, &max);
+    printf("\nAdancime arbore binar: %d\n",max);
+
+    int maxCrt1=0, max1=0;
+    adancimeOarecare(&arbore, 0, maxCrt1, &max1);
+    printf("Adancime arbore oarecare: %d\n",max1);
     free(arbore.noduri);
     free(arbore1.noduri);
+    eliberare(binar1);
 
     // node *arbore=nou(0);
     // adaugare(arbore, 0, STANGA, 1);
@@ -297,6 +352,8 @@ int main(void) {
     // printf("sdr: ");
     // sdr(arbore);
     // eliberare(arbore);
+
+
 
     return 0;
 }
