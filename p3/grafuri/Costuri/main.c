@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define INF 1000000
 
 typedef struct {
     int start;
@@ -196,15 +197,52 @@ int *djikstra(int **v, int size, int start) {
     return drum;
 }
 
+int **floyd(int **v, int size) {
+    int **a=(int**)malloc(size * sizeof(int*));
+    if (a==NULL) {
+        printf("Eroare la alocare matrice\n");
+        perror(NULL);
+        exit(-1);
+    }
+    for (int i=0;i<size;i++) {
+        a[i]=(int*)malloc(size * sizeof(int));
+        if (a[i]==NULL) {
+            printf("Eroare la alocare linie\n");
+            perror(NULL);
+            exit(-1);
+        }
+        for (int j=0;j<size;j++) {
+            if (i==j) a[i][j]=0;
+            else if (v[i][j]==0) a[i][j]=INF;
+            else a[i][j]=v[i][j];
+        }
+    }
+
+    for (int k=0;k<size;k++) {
+        for (int i=0;i<size;i++) {
+            for (int j=0;j<size;j++) {
+                if (a[i][k] + a[k][j] < a[i][j]) {
+                    a[i][j]=a[i][k]+a[k][j];
+                }
+            }
+        }
+    }
+
+    return a;
+}
+
 int main(int argc, char **argv) {
     int **v=NULL;
     int size=0;
     v=citire(&size, argv[1]);
     //afisare(v, size);
-    int *drum=djikstra(v, size, 0);
+    //int *drum=djikstra(v, size, 0);
+    int **a=floyd(v, size);
     //kruskal(v, size);
-    printArray(drum, size);
+    //printArray(drum, size);
+    afisare(a,size);
     eliberare(v, size);
-    free(drum);
+    eliberare(a,size);
+    //free(drum);
     return 0;
 }
