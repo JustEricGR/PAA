@@ -79,16 +79,22 @@ void calculareNivel(Arbore *arbore, int start, int stop, int crtLevel, int *leve
     }
 }
 
-void commandChain(Arbore *arbore, int start, int stop) {
+int commandChain(Arbore *arbore, int start, int stop) {
     if (start == stop) {
-        return;
+        printf("%d ",start);
+        return 1;
     }
-    printf("%d ",start);
+
     for (int i=0;i<arbore->size;i++) {
         if (arbore->noduri[i].parinte == start) {
-            commandChain(arbore, arbore->noduri[i].cheie, stop);
+            if (commandChain(arbore, arbore->noduri[i].cheie, stop)) {
+                printf("%d ",start);
+                return 1;
+            }
+
         }
     }
+    return 0;
 }
 
 void calculFinal(Arbore *arbore) {
@@ -111,7 +117,7 @@ int main(int argc, char **argv) {
     int level=0;
     int final=0;
     calculFinal(&arbore);
-    commandChain(&arbore, 1, 2);
+    commandChain(&arbore, 1, 555);
     free(arbore.noduri);
     return 0;
 }
