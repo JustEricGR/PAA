@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct {
+    int start;
+    int end;
+}Arc;
+
 int **citire(const char *in, int *size) {
     FILE *fin=NULL;
     if ((fin=fopen(in,"r"))==NULL) {
@@ -96,17 +101,74 @@ int *prim(int **v, int size, int start, int *suma) {
     return drum;
 }
 
+
+int find(int *parent, int x) {
+    if (parent[x]!=x) parent[x]=find(parent,parent[x]);
+    return parent[x];
+}
+
+void unite(int *parent, int x, int y) {
+    int rx=find(parent,x);
+    int ry=find(parent,y);
+    if (rx!=ry) {
+        parent[rx]=ry;
+    }
+}
+
+void kruskall(int **v, int size, int *suma) {
+    Arc *arcuri=(Arc*)malloc((size-1)*sizeof(Arc));
+    int *parent=(int*)malloc(size*sizeof(int));
+
+    for (int i=0;i<size;i++) {
+        parent[i]=i;
+    }
+
+    int len=0;
+
+    while (len<size-1) {
+        int min=INT_MAX;
+        int u=0,w=0;
+        for (int i=0;i<size;i++) {
+
+            for (int j=0;j<size;j++) {
+                if (v[i][j]>0 && find(parent,i) != find(parent,j) && min>v[i][j]) {
+                    min=v[i][j];
+                    u=i;
+                    w=j;
+                }
+            }
+        }
+        arcuri[len].start=u;
+        arcuri[len].end=w;
+        unite(parent,u, w);
+        v[u][w]=-1;
+        v[w][u]=-1;
+        len++;
+        *suma+=min;
+    }
+
+    for (int i=0;i<len;i++) {
+        printf("%d - %d\n",arcuri[i].start, arcuri[i].end);
+    }
+    free(arcuri);
+    free(parent);
+
+}
+
 int main(int argc, char **argv) {
     int **v=NULL;
     int size=0;
     v=citire(argv[1],&size);
     //afisare(v,size);
+    // int suma=0;
+    // int *drum=prim(v,size,0, &suma);
+    // printArray(drum,size);
+    // printf("Cost total: %d\n",suma);
+    //
+    // free(drum);
     int suma=0;
-    int *drum=prim(v,size,0, &suma);
-    printArray(drum,size);
+    kruskall(v,size,&suma);
     printf("Cost total: %d\n",suma);
-
-    free(drum);
     eliberare(v,size);
     return 0;
 }
