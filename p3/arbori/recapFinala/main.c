@@ -11,6 +11,17 @@ typedef struct {
     nod1 *noduri;
 }Arbore1;
 
+typedef struct nod2 {
+    int cheie;
+    int primFiu;
+    int frateDreapta;
+}nod2;
+
+typedef struct {
+    int size;
+    nod2 *noduri;
+}Arbore2;
+
 void arbore1Init(Arbore1 *arbore, int size) {
     arbore->size = size;
     arbore->noduri = (nod1 *)malloc(size * sizeof(nod1));
@@ -64,26 +75,6 @@ void srd1(Arbore1 *arbore, int start) {
     }
 }
 
-void srd(Arbore1 *arbore, int start) {
-    int flag=0;
-    for (int i = 0; i < arbore->size; i++) {
-        if (arbore->noduri[i].parinte == arbore->noduri[start].cheie) {
-            if (!flag) {
-                srd(arbore, arbore->noduri[i].cheie);
-                printf("%d ", arbore->noduri[start].cheie);
-                flag = 1;
-            }
-            else {
-                srd(arbore, arbore->noduri[i].cheie);
-            }
-        }
-    }
-
-    if (!flag) {
-        printf("%d ",arbore->noduri[start].cheie);
-    }
-}
-
 
 void sdr1(Arbore1 *arbore, int start) {
     for (int i = 0; i < arbore->size; i++) {
@@ -93,6 +84,103 @@ void sdr1(Arbore1 *arbore, int start) {
     }
 
     printf("%d ",arbore->noduri[start].cheie);
+}
+
+void arbore2Init(Arbore2 *arbore, int size) {
+    arbore->size = size;
+    arbore->noduri = (nod2 *)malloc(size * sizeof(nod2));
+}
+
+void append2(Arbore2 *arbore, int cheie, int primFiu, int frateDreapta) {
+    arbore->noduri[cheie].cheie = cheie;
+    arbore->noduri[cheie].primFiu = primFiu;
+    arbore->noduri[cheie].frateDreapta = frateDreapta;
+}
+
+void afisare2(Arbore2 arbore) {
+    printf("Cheie:\n");
+    for (int i = 0; i < arbore.size; i++) {
+        printf("%d ", arbore.noduri[i].cheie);
+    }printf("\n");
+
+    printf("Prim fiu:\n");
+    for (int i = 0; i < arbore.size; i++) {
+        printf("%d ", arbore.noduri[i].primFiu);
+    }printf("\n");
+
+    printf("Frate dreapta:\n");
+    for (int i = 0; i < arbore.size; i++) {
+        printf("%d ", arbore.noduri[i].frateDreapta);
+    }printf("\n");
+}
+
+void rsd2(Arbore2 *arbore, int start) {
+    printf("%d ",arbore->noduri[start].cheie);
+
+    int copil=arbore->noduri[start].primFiu;
+    while (copil!=-1) {
+        rsd2(arbore, copil);
+        copil=arbore->noduri[copil].frateDreapta;
+    }
+}
+
+void srd2(Arbore2 *arbore, int start) {
+    int copil=arbore->noduri[start].primFiu;
+    int flag=0;
+    while (copil!=-1) {
+        if (!flag) {
+            srd2(arbore, copil);
+            printf("%d ",start);
+            flag = 1;
+        }
+        else {
+            srd2(arbore, copil);
+        }
+        copil=arbore->noduri[copil].frateDreapta;
+    }
+
+    if (!flag) {
+        printf("%d ",start);
+    }
+}
+
+void sdr2(Arbore2 *arbore, int start) {
+    int copil=arbore->noduri[start].primFiu;
+    while (copil!=-1) {
+        sdr2(arbore, copil);
+        copil=arbore->noduri[copil].frateDreapta;
+    }
+    printf("%d ",start);
+}
+
+void transform1(Arbore1 *arbore1, Arbore2 *arbore2) {
+    for (int i = 0; i < arbore1->size; i++) {
+        arbore2->noduri[i].cheie = arbore1->noduri[i].cheie;
+        arbore2->noduri[i].primFiu = -1;
+        arbore2->noduri[i].frateDreapta = -1;
+    }
+
+    for (int i=0;i<arbore1->size;i++) {
+        for (int j=0;j<arbore1->size;j++) {
+            if (arbore1->noduri[i].cheie == arbore1->noduri[j].parinte) {
+                arbore2->noduri[i].primFiu = arbore1->noduri[j].cheie;
+                break;
+            }
+        }
+    }
+
+    for (int i=0;i<arbore1->size;i++) {
+        int frate=arbore1->noduri[i+1].cheie;
+        for (int j=i+1;j<arbore1->size;j++) {
+            if (arbore1->noduri[i].parinte == arbore1->noduri[j].parinte) {
+                arbore2->noduri[i].frateDreapta = frate;
+                frate = arbore1->noduri[j].cheie;
+            }
+            else {
+                break;
+            }
+        }
+    }
 }
 
 int main(void) {
@@ -111,16 +199,13 @@ int main(void) {
 
     afisare1(arbore1);
 
-    printf("Rsd1: ");
-    rsd1(&arbore1, 0);
+    Arbore2 arbore2;
+    arbore2Init(&arbore2, 10);
 
-    printf("\nSrd1: ");
-    srd1(&arbore1, 0);
-
-    printf("\nSdr1: ");
-    sdr1(&arbore1, 0);
+    transform1(&arbore1, &arbore2);
+    afisare2(arbore2);
 
     free(arbore1.noduri);
-
+    free(arbore2.noduri);
     return 0;
 }
