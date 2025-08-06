@@ -22,6 +22,17 @@ typedef struct {
     nod2 *noduri;
 }Arbore2;
 
+typedef struct node {
+    int cheie;
+    struct node *stanga;
+    struct node *dreapta;
+}node;
+
+typedef enum {
+    STANGA,
+    DREAPTA
+}Pozitie;
+
 void arbore1Init(Arbore1 *arbore, int size) {
     arbore->size = size;
     arbore->noduri = (nod1 *)malloc(size * sizeof(nod1));
@@ -183,6 +194,83 @@ void transform1(Arbore1 *arbore1, Arbore2 *arbore2) {
     }
 }
 
+node *nou(int cheie) {
+    node *e=(node *)malloc(sizeof(node));
+    e->cheie = cheie;
+    e->stanga=e->dreapta=NULL;
+    return e;
+}
+
+void appendBinar(node *arbore, int cheieFiu, Pozitie poz, int cheieParinte) {
+    if (arbore == NULL) {
+        arbore = nou(cheieFiu);
+    }
+    else {
+        if (arbore->cheie == cheieParinte) {
+            if (poz == STANGA) {
+                arbore->stanga = nou(cheieFiu);
+            }
+            else {
+                arbore->dreapta = nou(cheieFiu);
+            }
+        }
+        else {
+            appendBinar(arbore->stanga,cheieFiu,poz,cheieParinte);
+            appendBinar(arbore->dreapta,cheieFiu,poz,cheieParinte);
+        }
+    }
+
+}
+
+void rsd(node *arbore) {
+    if (arbore == NULL) {
+        return;
+    }
+    printf("%d ",arbore->cheie);
+    rsd(arbore->stanga);
+    rsd(arbore->dreapta);
+}
+
+void srd(node *arbore) {
+    if (arbore == NULL) {
+        return;
+    }
+    srd(arbore->stanga);
+    printf("%d ",arbore->cheie);
+    srd(arbore->dreapta);
+}
+
+void sdr(node *arbore) {
+    if (arbore == NULL) {
+        return;
+    }
+    sdr(arbore->stanga);
+    sdr(arbore->dreapta);
+    printf("%d ",arbore->cheie);
+}
+
+void eliberare(node *arbore) {
+    if (arbore == NULL) {
+        return;
+    }
+    eliberare(arbore->stanga);
+    eliberare(arbore->dreapta);
+    free(arbore);
+}
+
+void transform2(Arbore2 *arbore1, node *arbore2, int start) {
+    if (arbore1->noduri[start].primFiu != -1) {
+        appendBinar(arbore2,arbore1->noduri[start].primFiu,STANGA,arbore1->noduri[start].cheie);
+        transform2(arbore1,arbore2,arbore1->noduri[start].primFiu);
+    }
+
+    if (arbore1->noduri[start].frateDreapta != -1) {
+        appendBinar(arbore2,arbore1->noduri[start].frateDreapta,DREAPTA,arbore1->noduri[start].cheie);
+        transform2(arbore1,arbore2,arbore1->noduri[start].frateDreapta);
+    }
+
+}
+
 int main(void) {
     Arbore1 arbore1;
     arbore1Init(&arbore1, 10);
@@ -197,15 +285,25 @@ int main(void) {
     append1(&arbore1, 8, 3);
     append1(&arbore1, 9, 3);
 
-    afisare1(arbore1);
+    //afisare1(arbore1);
+
+    printf("rsd pe arbore oarecare1: ");
+    rsd1(&arbore1,0);
 
     Arbore2 arbore2;
     arbore2Init(&arbore2, 10);
-
     transform1(&arbore1, &arbore2);
-    afisare2(arbore2);
+    printf("\nrsd pe arbore oarecare2: ");
+    rsd2(&arbore2,0);
+
+    node *arbore=nou(arbore1.noduri[0].cheie);
+    transform2(&arbore2, arbore, arbore1.noduri[0].cheie);
+
+    printf("\nrsd pe arbore binar: ");
+    rsd(arbore);
 
     free(arbore1.noduri);
     free(arbore2.noduri);
+    eliberare(arbore);
     return 0;
 }
