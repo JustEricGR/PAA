@@ -271,9 +271,43 @@ void transform2(Arbore2 *arbore1, node *arbore2, int start) {
 
 }
 
+int check(Arbore1 arbore, int cheie) {
+    for (int i=0;i<arbore.size;i++) {
+        if (arbore.noduri[i].parinte == cheie) return 0;
+    }
+    return 1;
+}
+
+void inaltimeOarecare(Arbore1 *arbore, int start, int *max, int crtMax) {
+    if (check(*arbore,start)) {
+        if (*max<crtMax) {
+            *max=crtMax;
+
+        }
+        crtMax=0;
+    }
+    for (int i = 0; i < arbore->size; i++) {
+        if (arbore->noduri[i].parinte == arbore->noduri[start].cheie) {
+            inaltimeOarecare(arbore,arbore->noduri[i].cheie,max,crtMax+1);
+        }
+    }
+}
+
+void inaltimeBinar(node *arbore, int *max, int maxCrt) {
+    if (arbore == NULL) {
+        return;
+    }
+    if (maxCrt>*max && arbore->stanga == NULL && arbore->dreapta == NULL) {
+        *max=maxCrt;
+        maxCrt=0;
+    }
+    inaltimeBinar(arbore->stanga,max,maxCrt+1);
+    inaltimeBinar(arbore->dreapta,max,maxCrt+1);
+}
+
 int main(void) {
     Arbore1 arbore1;
-    arbore1Init(&arbore1, 10);
+    arbore1Init(&arbore1, 11);
     append1(&arbore1, 0, -1);
     append1(&arbore1, 1, 0);
     append1(&arbore1, 2, 0);
@@ -284,6 +318,7 @@ int main(void) {
     append1(&arbore1, 7, 3);
     append1(&arbore1, 8, 3);
     append1(&arbore1, 9, 3);
+    append1(&arbore1, 10, 4);
 
     //afisare1(arbore1);
 
@@ -291,7 +326,7 @@ int main(void) {
     rsd1(&arbore1,0);
 
     Arbore2 arbore2;
-    arbore2Init(&arbore2, 10);
+    arbore2Init(&arbore2, 11);
     transform1(&arbore1, &arbore2);
     printf("\nrsd pe arbore oarecare2: ");
     rsd2(&arbore2,0);
@@ -301,6 +336,14 @@ int main(void) {
 
     printf("\nrsd pe arbore binar: ");
     rsd(arbore);
+
+    int max1=0, max1Crt=0;
+    inaltimeOarecare(&arbore1,0,&max1,max1Crt);
+    printf("\ninaltime pe oarecare: %d",max1);
+
+    int max=0,maxCrt=0;
+    inaltimeBinar(arbore,&max,maxCrt);
+    printf("\ninaltime pe binar: %d\n",max);
 
     free(arbore1.noduri);
     free(arbore2.noduri);
