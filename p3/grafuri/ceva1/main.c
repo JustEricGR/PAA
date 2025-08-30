@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef  struct nod {
+    int cheie;
+    struct nod *urm;
+}nod;
+
+typedef struct {
+    nod *prim;
+    nod *ultim;
+}Coada;
+
+int **citire(const char *in, int *size) {
+    FILE *fin=NULL;
+    if((fin=fopen(in,"r"))==NULL) {
+        printf("Eroare decshidere fisier\n");
+        perror("Eroare");
+        exit(-1);
+    }
+    fscanf(fin,"%d",size);
+
+    int **v=(int**)malloc(sizeof(int *)*(*size));
+    for(int i=0;i<(*size);i++) {
+        v[i]=(int*)malloc(sizeof(int)*(*size));
+        for(int j=0;j<(*size);j++) {
+
+            fscanf(fin,"%d",&v[i][j]);
+
+        }
+    }
+    return v;
+}
+
+void afisare(int **v, int size) {
+    for(int i=0;i<size;i++) {
+        for(int j=0;j<size;j++) {
+            printf("%d ",v[i][j]);
+        }printf("\n");
+    }printf("\n");
+}
+
+void eliberare(int **v, int size) {
+    for(int i=0;i<size;i++) {
+        free(v[i]);
+    }
+    free(v);
+}
+
+void dfs(int **v, int size, int *vizitat, int start) {
+    vizitat[start]=1;
+    printf("%d ",start);
+    for(int i=0;i<size;i++) {
+        if (!vizitat[i] && v[i][start] == 1) {
+            dfs(v,size,vizitat,i);
+        }
+    }
+}
+
+void coadaInit(Coada *coada) {
+    coada->prim=NULL;
+    coada->ultim=NULL;
+}
+
+nod *nou(int cheie) {
+    nod *nou = (nod *)malloc(sizeof(nod));
+    if(nou==NULL) {
+        printf("Eroare la alocare rand\n");
+        perror("Eroare");
+        exit(-1);
+    }
+    nou->cheie = cheie;
+    nou->urm = NULL;
+    return nou;
+}
+
+void push(Coada *coada, int cheie) {
+    if (coada->prim==NULL) {
+        coada->prim = coada->ultim = nou(cheie);
+    }
+    else {
+        nod *aux=nou(cheie);
+        coada->ultim->urm=aux;
+        coada->ultim=aux;
+    }
+}
+
+void pop(Coada *coada) {
+    nod *aux=coada->prim->urm;
+    free(coada->prim);
+    coada->prim=aux;
+}
+
+void afisareCoada(Coada coada) {
+    for (nod *n=coada.prim; n!=NULL; n=n->urm) {
+        printf("%d ",n->cheie);
+    }printf("\n");
+}
+
+void eliberareCoada(Coada *coada) {
+    while (coada->prim!=NULL) {
+        pop(coada);
+    }
+}
+
+void bfs(Coada *coada, int **v, int size, int start) {
+    push(coada,start);
+    int *vizitat=(int *) calloc(size,sizeof(int));
+    vizitat[start]=1;
+    Coada q;
+    coadaInit(&q);
+    push(&q,start);
+    while (q.prim!=NULL) {
+        int aux=q.prim->cheie;
+        pop(&q);
+        for(int i=0;i<size;i++) {
+            if (!vizitat[i] && v[aux][i] == 1) {
+                push(&q,i);
+                push(coada, i);
+                vizitat[i]=1;
+            }
+        }
+    }
+    free(vizitat);
+    eliberareCoada(&q);
+}
+
+
+int main(int argc, char **argv) {
+    int **v=NULL;
+    int size=0;
+    Coada coada;
+    coadaInit(&coada);
+    v=citire(argv[1],&size);
+    //int *vizitat=(int*)calloc(size, sizeof (int));
+    //dfs(v,size,vizitat,0);
+    bfs(&coada,v,size,0);
+    afisareCoada(coada);
+
+    eliberareCoada(&coada);
+    eliberare(v,size);
+    //free(vizitat);
+    return 0;
+}
